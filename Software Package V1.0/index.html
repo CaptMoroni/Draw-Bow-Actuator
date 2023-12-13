@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Actuator - User Interface</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm">
+            <div id="positionElement" class="positionElement">
+                <div id="positionBar" class="positionBar">
+                    <div id="positionFill" class="positionFill animate" style="height:50%;"></div>
+                </div>
+                <div id="positionLabelContainer" class="positionLabelContainer">
+                    <div class="upperLimit positionPill">
+                        <div class="positionPillBG" id="upperLimitText">30.0 in</div>
+                    </div>
+                    <div class="currentPos positionPill animate" id="currentPosHeight">
+                        <div class="positionPillBGDouble blue" id="currentLoadText">5.0 lbf</div>
+                        <div class="positionPillBGDouble green" id="currentPosText">10.0 in</div>
+                    </div>
+                    <div class="lowerLimit positionPill">
+                        <div class="positionPillBG" id="lowerLimitText">0.00 in</div>
+                    </div>
+                </div>    
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="controllElement" class="controllElement">
+                <input type="text" class="input" id="runInput" value="28">
+                <div class="green button" id="buttonRun">Run</div>
+                <a href="/testData.csv" target="download"><div class="button" id="buttonRun">Save</div></a>
+                <div class="button" id="buttonUpdateGraph">Get Graph</div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="controllElement" class="controllElement">
+                <div class="button" id="buttonUP">Up</div>
+                <div class="button" id="buttonDown">Down</div>
+                <div class="button" id="buttonZero">Set Zero</div>
+                <div class="button" id="buttonTare">Tare</div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="speedSelectElement" class="controllElement">
+                <div id="setStepLarge" class="button">1.00 in</div>
+                <div id="setStepMedium" class="button selected">0.10 in</div>
+                <div id="setStepSmall" class="button">0.01 in</div>
+            </div>
+        </div>
+        <div class="col-sm">
+            <div id="controllElement" class="controllElement">
+                <input type="text" class="input" id="goToInput" value="10">
+                <div class="green button" id="buttonGoTo">Go To</div>
+                <div id="toggleLock" class="button">Lock</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg">
+            <div class="dataOutput">
+                <div id="graph" style="width:100%;max-width:700px"></div>
+            </div>
+        </div>
+        <div class="col-lg">
+            <div class="dataCommands" id="dataCommands">
+    
+            </div>
+        </div>
+    </div>
+    <div class="row"><div class="col"></div></div>
+    </div>
+</body>
+<script>
+    pyData = '%s'
+</script>
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="main.js"></script>
+</html>
