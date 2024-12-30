@@ -1,0 +1,51 @@
+Currently working on a planning apparatus (ERP)
+
+Needs an API Exposed:
+ - Documentation
+ - Wanted API Calls:
+    - Pull the data out of the machine
+        - JSON format
+        - CSV format with custom file name matching the serial number
+    - Move the machine
+    - Run single auto draw test
+    - Calls for setting the calibration 
+
+Phone is the primary device being used to interact with the machine 
+
+Function:
+ - Machine Calibration
+ - Use the load calibration function
+   - data out of the machine is calibrated/curve fitted 
+   - input coefficients for the curve fit 
+    - 3rd order polynomial
+ - Calibration routine should be something like this:
+    - Measure the weight, save the raw data
+    - solve the polynomial and save the coefficients
+ - Save the raw data with the name/serial number
+ - Save multiple runs 
+ - Draw offset: 
+    - brace height where the string touches the machine
+    - for a 10 inch draw currently the data will say 0 to 10 should say 5 to 15 if the brace height is 5 inches
+ * Set the brace height in the calibration page
+ * Display when the machine is a the zero point
+ - Change the default jog distance to .5 inches
+ - Calibration feature to set the top speed of the machine 
+    - input the inches per min
+
+
+mechanical issues
+ - Reaching 75 lbf loads
+ - Making a side brace, machine leans when at full extension. 
+
+Bug fix:
+ - Machine load number is not as stable as we would like. 
+ - Machine doesn't seem to like to hold its zero
+
+improved jogging:
+ - potential solution is to get the rotary dial working
+
+Use the same interface for jogging. 
+
+
+
+
