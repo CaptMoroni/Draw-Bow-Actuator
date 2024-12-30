@@ -45,7 +45,7 @@ class actuator:
         return load
 
     def setTare(self):
-        self.tareValue = self.getLoad()
+        self.tareValue += self.getLoad()
 
     def handelCommand( self, cData ):
         tft_c.updatePos('---', '---')

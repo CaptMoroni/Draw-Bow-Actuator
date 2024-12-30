@@ -25,6 +25,8 @@ class actuator:
             'maxFrequiency': 5000,
             'FWD': 0,
             })
+        
+        self.cl = cl.loadCellTools()
         self.lock_pin = Pin(17, Pin.OUT)
         self.lock_enable = True
 
@@ -41,11 +43,11 @@ class actuator:
 
     def getLoad( self ):
         raw_val = self.hx711.read()
-        load = cl.convertRawLoad(raw_val) - self.tareValue
+        load = self.cl.convertRawLoad(raw_val) - self.tareValue
         return load
 
     def setTare(self):
-        self.tareValue = self.getLoad()
+        self.tareValue += self.getLoad()
 
     def handelCommand( self, cData ):
         tft_c.updatePos('---', '---')
@@ -115,3 +117,6 @@ class actuator:
             savedFile.write(lineData)
         print('done')
         return True
+    
+    def solveCalibration( self, load1, raw1, load2, raw2):
+        return

@@ -92,6 +92,7 @@ if wlan.isconnected():
         URL = URL_Data['URL']
         responseHeaders = htmlHeader
         updateScreen.deinit()
+        
         print('Request URL: {}'.format(URL))
         if URL == '/':
             print('root')

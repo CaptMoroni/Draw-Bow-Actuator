@@ -1,16 +1,18 @@
 import control_settings as cs
-settings = cs.importSettings()
 
-x1 = settings['load_cell_value_1']
-y1 = settings['load_cell_weight_1']
+class loadCellTools:
+    def __init__(self):
+        settings = cs.importSettings()
 
-x2 = settings['load_cell_value_2']
-y2 = settings['load_cell_weight_2']
+        self.x1 = settings['load_cell_value_1']
+        self.y1 = settings['load_cell_weight_1']
 
-m = (y2-y1)/(x2-x1)
+        self.x2 = settings['load_cell_value_2']
+        self.y2 = settings['load_cell_weight_2']
 
-def convertRawLoad(x):
-    global m, x1, y1
-    load = round(m*(x - x1) + y1,1)
-    lineFitLoad =  .000202*(load)^3 - 0.0149*(load)^2 + 1.35*(load) - 0.122
-    return round(m*(x - x1) + y1,1)
+        self.m = (self.y2-self.y1)/(self.x2-self.x1)
+
+    def convertRawLoad(self, x):
+        load = round(self.m*(x - self.x1) + self.y1,1)
+        lineFitLoad =  .000202*(load)**3 - 0.0149*(load)**2 + 1.35*(load) - 0.122
+        return lineFitLoad

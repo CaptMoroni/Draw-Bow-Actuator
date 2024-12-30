@@ -7,7 +7,11 @@ settingList = {
     "load_cell_weight_1": 0,
     "load_cell_value_2": -295082.0,
     "load_cell_weight_2": 13,
-    "sampleRate": 50
+    "sampleRate": 50,
+    "a": 0,
+    "b": 0,
+    "c": 0,
+    "d": 0,
 }
 
 def writeSettings( settings ):
