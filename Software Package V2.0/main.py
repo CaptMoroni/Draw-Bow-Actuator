@@ -100,6 +100,12 @@ if wlan.isconnected():
             response = page.read()
             page.close()
 
+        elif URL == '/calibration':
+            print('Calibration Page')
+            page = open("page_calibration.html", "r")
+            response = page.read()
+            page.close()
+
         elif URL == '/settings':
             print('settings Page')
             page = open("page_settings.html", "r")
@@ -114,6 +120,12 @@ if wlan.isconnected():
 
         elif URL == '/page_settings.js':
             page = open("page_settings.js", "r")
+            response = page.read()
+            page.close()
+            responseHeaders = javascriptHeader
+
+        elif URL == '/page_calibration.js':
+            page = open("page_calibration.js", "r")
             response = page.read()
             page.close()
             responseHeaders = javascriptHeader
@@ -150,6 +162,14 @@ if wlan.isconnected():
             load = act.getLoad()
             position = act.S1.getCurrentPos()
             testData = {'x':position, 'l':load}
+            response = json.dumps(testData)
+            responseHeaders = jsonHeader
+
+        elif URL == '/mr':
+            rawload = act.getRawLoad()
+            load = act.getLoad()
+            position = act.S1.getCurrentPos()
+            testData = {'x':position, 'l':load, 'r': rawload}
             response = json.dumps(testData)
             responseHeaders = jsonHeader
 

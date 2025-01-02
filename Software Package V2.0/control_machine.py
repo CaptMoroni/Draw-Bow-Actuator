@@ -33,7 +33,7 @@ class actuator:
         self.pin_OUT = Pin(26, Pin.IN, pull=Pin.PULL_DOWN)
         self.pin_SCK = Pin(27, Pin.OUT)
 
-        self.hx711 = HX711(self.pin_SCK, self.pin_OUT)
+        self.hx711 = HX711(self.pin_SCK, self.pin_OUT)  
         self.hx711.tare()
 
         self.onBoardLED = Pin('LED', Pin.OUT)
@@ -45,6 +45,10 @@ class actuator:
         raw_val = self.hx711.read()
         load = self.cl.convertRawLoad(raw_val) - self.tareValue
         return load
+    
+    def getRawLoad( self ):
+        raw_val = self.hx711.read()
+        return raw_val
 
     def setTare(self):
         self.tareValue += self.getLoad()

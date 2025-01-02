@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="main.css" type="text/css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draw Actuator - User Interface</title>
+</head>
+<body>
+    <dif class="row">
+        <dif class="col-lg">
+            <div class="nav" id="nav"></div>
+        </dif>
+    </dif>
+    <dif class="row">
+        <dif class="col-lg">
+            <h1>Calibration</h1>
+        </dif>
+    </dif>
+    <div class="row">
+
+        <div class="col-lg">
+            <div class="green button" id="refresh" style="width:200px">Refresh Values</div>
+            <div id="controllElement" class="controllElement">
+                <p>Raw Load:</p>
+                <input type="text" class="input" id="r" value="" style="width:100%" disabled placeholder="--">
+                <p>Calculated Load:</p>
+                <input type="text" class="input" id="l" value="" style="width:100%" disabled placeholder="--">
+                <p>Position:</p>
+                <input type="text" class="input" id="p" value="" style="width:100%" disabled placeholder="--">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg" style="min-width: 300px; display: block;">
+            <h3>Calibration Raw</h3>
+            Value 1: <input type="text" class="input" id="raw_1" value="" placeholder="--"></br>
+            Value 2: <input type="text" class="input" id="raw_2" value="" placeholder="--"></br>
+            Value 3: <input type="text" class="input" id="raw_3" value="" placeholder="--"></br>
+            Value 4: <input type="text" class="input" id="raw_4" value="" placeholder="--"></br>
+        </div>
+        <div class="col-lg" style="min-width: 300px; display: block;">
+            <h3>Calibration Known Value</h3>
+            Known 1: <input type="text" class="input" id="known_1" value="" placeholder="--"></br>
+            Known 2: <input type="text" class="input" id="known_2" value="" placeholder="--"></br>
+            Known 3: <input type="text" class="input" id="known_3" value="" placeholder="--"></br>
+            Known 4: <input type="text" class="input" id="known_4" value="" placeholder="--"></br>
+        </div>
+    </div>
+    
+    <div class="green button" id="save">Update</div>
+
+</body>
+<script src="page_calibration.js"></script>
+</html>

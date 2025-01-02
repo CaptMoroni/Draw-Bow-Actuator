@@ -10,9 +10,12 @@ class loadCellTools:
         self.x2 = settings['load_cell_value_2']
         self.y2 = settings['load_cell_weight_2']
 
-        self.m = (self.y2-self.y1)/(self.x2-self.x1)
+        self.a = -1.96034E-18
+        self.b = -1.45362E-12
+        self.c = -4.96120E-05
+        self.d = 4.57435E-02
+
 
     def convertRawLoad(self, x):
-        load = round(self.m*(x - self.x1) + self.y1,1)
-        lineFitLoad =  .000202*(load)**3 - 0.0149*(load)**2 + 1.35*(load) - 0.122
+        lineFitLoad =  self.a * (x**3) + self.b * (x**2) + self.c * x + self.d
         return lineFitLoad
