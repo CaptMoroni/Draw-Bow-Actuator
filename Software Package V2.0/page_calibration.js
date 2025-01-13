@@ -14,25 +14,29 @@ function makeCall(callData, url){
     xhttp.send();
 }
 function SaveData(){
+    console.log("Saving")
     let newData = {}
     
-    let SSID = document.getElementById("SSID").value
-    let PASSWORD = document.getElementById("PASSWORD").value
-    let load_cell_value_1 = document.getElementById("load_cell_value_1").value
-    let load_cell_weight_1 = document.getElementById("load_cell_weight_1").value
-    let load_cell_value_2 = document.getElementById("load_cell_value_2").value
-    let load_cell_weight_2 = document.getElementById("load_cell_weight_2").value
-    let sampleRate = document.getElementById("sampleRate").value
+    let raw_1 = document.getElementById("raw_1").value
+    let raw_2 = document.getElementById("raw_2").value
+    let raw_3 = document.getElementById("raw_3").value
+    let raw_4 = document.getElementById("raw_4").value
 
-    newData['SSID'] = SSID
-    newData['PASSWORD'] = PASSWORD
-    newData['load_cell_value_1'] = parseFloat(load_cell_value_1)
-    newData['load_cell_weight_1'] = parseFloat(load_cell_weight_1)
-    newData['load_cell_value_2'] = parseFloat(load_cell_value_2)
-    newData['load_cell_weight_2'] = parseFloat(load_cell_weight_2)
-    newData['sampleRate'] = parseInt(sampleRate)
+    let known_1 = document.getElementById("known_1").value
+    let known_2 = document.getElementById("known_2").value
+    let known_3 = document.getElementById("known_3").value
+    let known_4 = document.getElementById("known_4").value
 
-    makeCall(newData,'saveSettings')
+    newData = [
+        [parseFloat(raw_1), parseFloat(known_1)],
+        [parseFloat(raw_2), parseFloat(known_2)],
+        [parseFloat(raw_3), parseFloat(known_3)],
+        [parseFloat(raw_4), parseFloat(known_4)],
+    ]
+
+    console.log(newData)
+
+    makeCall(newData,'saveCalibration')
 }
 
 function refreshData(){
@@ -41,5 +45,6 @@ function refreshData(){
 
 //  Controll Logic
 document.getElementById("refresh").onclick = refreshData
+document.getElementById("save").onclick = SaveData
 
 refreshData();

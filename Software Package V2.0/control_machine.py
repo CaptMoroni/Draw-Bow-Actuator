@@ -122,5 +122,8 @@ class actuator:
         print('done')
         return True
     
-    def solveCalibration( self, load1, raw1, load2, raw2):
-        return
+    def solveCalibration( self, calData):
+        # CalData should be a list of lists [[raw, actual], [raw, actual]]
+        a, b, c, d = self.cl.solveCurveFit(calData)
+        self.cl.setLineFitValues(d, c, b, a)
+        return a, b, c, d

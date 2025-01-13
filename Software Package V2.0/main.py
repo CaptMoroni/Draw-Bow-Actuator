@@ -1,6 +1,5 @@
 # Control Functions
 
-import control_loadcell as cl #This line might not be needed and 'cl' conflicts with the network
 from control_machine import actuator
 import control_display as tft_c
 
@@ -185,6 +184,21 @@ if wlan.isconnected():
                 inputData = json.loads(jsonText)
                 print(inputData)
                 cs.writeSettings(inputData)
+            else:
+                inputData = {}
+            settings = cs.importSettings()
+            response = json.dumps(settings)
+            responseHeaders = jsonHeader
+
+        elif URL == '/saveCalibration':
+            jsonText = URL_Data['data'].replace('%22', '"')
+            print(jsonText)
+            if jsonText != 'undefined':
+                inputData = json.loads(jsonText)
+                print(inputData)
+                a, b, c, d = act.solveCalibration(inputData) #commands the actuator to solve the calibration and update the line fit with the values
+                cs.updateCalibration(a, b, c, d, inputData) #updates the settings file with the new data
+                print(a, b, c, d)
             else:
                 inputData = {}
             settings = cs.importSettings()
