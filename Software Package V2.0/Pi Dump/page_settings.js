@@ -6,6 +6,10 @@ function makeCall(callData, url){
 
             document.getElementById("SSID").value = machineData['SSID']
             document.getElementById("PASSWORD").value = machineData['PASSWORD']
+            document.getElementById("load_cell_value_1").value = machineData['load_cell_value_1']
+            document.getElementById("load_cell_weight_1").value = machineData['load_cell_weight_1']
+            document.getElementById("load_cell_value_2").value = machineData['load_cell_value_2']
+            document.getElementById("load_cell_weight_2").value = machineData['load_cell_weight_2']
             document.getElementById("sampleRate").value = machineData['sampleRate']
         }
     };
@@ -18,10 +22,18 @@ function SaveData(){
     
     let SSID = document.getElementById("SSID").value
     let PASSWORD = document.getElementById("PASSWORD").value
+    let load_cell_value_1 = document.getElementById("load_cell_value_1").value
+    let load_cell_weight_1 = document.getElementById("load_cell_weight_1").value
+    let load_cell_value_2 = document.getElementById("load_cell_value_2").value
+    let load_cell_weight_2 = document.getElementById("load_cell_weight_2").value
     let sampleRate = document.getElementById("sampleRate").value
 
     newData['SSID'] = SSID
     newData['PASSWORD'] = PASSWORD
+    newData['load_cell_value_1'] = parseFloat(load_cell_value_1)
+    newData['load_cell_weight_1'] = parseFloat(load_cell_weight_1)
+    newData['load_cell_value_2'] = parseFloat(load_cell_value_2)
+    newData['load_cell_weight_2'] = parseFloat(load_cell_weight_2)
     newData['sampleRate'] = parseInt(sampleRate)
 
     makeCall(newData,'saveSettings')

@@ -7,10 +7,6 @@
     <title>Draw Actuator - User Interface</title>
 </head>
 <body>
-    <div class="row" style="display: block;">
-        Serial Number:
-        <input type="text" class="input" id="testName" value="" placeholder="Enter Serial Number" style="width: 250px; text-align: left;">
-    </div>
     <div class="row">
         <div class="col-sm">
             <div id="positionElement" class="positionElement">
@@ -35,7 +31,7 @@
             <div id="controllElement" class="controllElement">
                 <input type="text" class="input" id="runInput" value="28">
                 <div class="green button" id="buttonRun">Run</div>
-                <a href="/testData.csv" target="download" id="buttonSave"><div class="button">Save</div></a>
+                <a href="/testData.csv" target="download"><div class="button" id="buttonRun">Save</div></a>
                 <div class="button" id="buttonUpdateGraph">Get Graph</div>
             </div>
         </div>
@@ -43,15 +39,15 @@
             <div id="controllElement" class="controllElement">
                 <div class="button" id="buttonUP">Up</div>
                 <div class="button" id="buttonDown">Down</div>
-                <div class="button" id="buttonZero">Set Origin</div>
+                <div class="button" id="buttonZero">Set Zero</div>
                 <div class="button" id="buttonTare">Tare</div>
             </div>
         </div>
         <div class="col-sm">
             <div id="speedSelectElement" class="controllElement">
                 <div id="setStepLarge" class="button">1.00 in</div>
-                <div id="setStepMedium" class="button selected">0.5 in</div>
-                <div id="setStepSmall" class="button">0.1 in</div>
+                <div id="setStepMedium" class="button selected">0.10 in</div>
+                <div id="setStepSmall" class="button">0.01 in</div>
             </div>
         </div>
         <div class="col-sm">
@@ -59,12 +55,6 @@
                 <input type="text" class="input" id="goToInput" value="10">
                 <div class="green button" id="buttonGoTo">Go To</div>
                 <div id="toggleLock" class="button">Lock</div>
-            </div>
-        </div>
-        <div class="col-sm">
-            <div id="controllElement" class="controllElement">
-                <a href="/calibration" id="buttonSave"><div class="button">Calibration</div></a>
-                <a href="/settings" id="buttonSave"><div class="button">Settings</div></a>
             </div>
         </div>
     </div>

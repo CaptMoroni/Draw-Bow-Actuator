@@ -1,3 +1,6 @@
+
+pyData = '{"piURL":"192.1.1.1", "count":42}'
+data = JSON.parse(pyData)
 let x = 0
 let l = 0
 let maxX = 30
@@ -28,6 +31,7 @@ function makeCall(callData, url){
     }
 }
 function log(text, c){
+    console.log(text)
     oldHTML = document.getElementById("dataCommands").innerHTML
     if (c){
         document.getElementById("dataCommands").innerHTML = "<p style='background:#1d6f90;color:#fff;'>" + text + "</p>" + oldHTML
@@ -59,14 +63,14 @@ function stepSizeLarge(){
 }
 function stepSizeMedium(){
     log("Set Step Size: Medium");
-    clickIncrament = 0.5
+    clickIncrament = 0.1
     document.getElementById("setStepMedium").classList.add('selected')
     document.getElementById("setStepLarge").classList.remove('selected')
     document.getElementById("setStepSmall").classList.remove('selected')
 }
 function stepSizeSmall(){
     log("Set Step Size: Small");
-    clickIncrament = 0.1
+    clickIncrament = 0.01
     document.getElementById("setStepSmall").classList.add('selected')
     document.getElementById("setStepMedium").classList.remove('selected')
     document.getElementById("setStepLarge").classList.remove('selected')
@@ -98,9 +102,8 @@ function goTo(){
 function run(){
     log('Running: Please Wait')
     let runHeight = document.getElementById("runInput").value
-    let input = document.getElementById("testName").value
     x = parseFloat(runHeight)
-    makeCall({"c":"run","x":x, "n":input},'c')
+    makeCall({"c":"run","x":x},'c')
 }
 function getMachineStatus(){
     makeCall({"c":"run","x":x},'m')
@@ -111,16 +114,18 @@ function updateGraph(){
             if (this.readyState == 4 && this.status == 200) {
                 csvData = this.response.toString()
                 csvData = csvData.split('\n')
+                console.log(csvData)
                 let xValues = [];
                 let yValues = [];
-                for (let i = 0; i < csvData.length-3; i++) {
-                    lineData = csvData[i+3]
+                for (let i = 0; i < csvData.length-1; i++) {
+                    lineData = csvData[i+1]
+                    console.log(lineData)
                     lineData = lineData.split(",")
                     xValues.push(parseFloat(lineData[0]));
                     yValues.push(parseFloat(lineData[1]));
                 }
                 const data = [{x:xValues, y:yValues, mode:"lines"}];
-                const layout = {title: csvData[0]};
+                const layout = {title: "Test Data"};
                 Plotly.newPlot("graph", data, layout);
             }
         };
@@ -134,20 +139,19 @@ function lock(){
 }
 function toggleLock(){
     if (systemLock){
+        console.log('unlocking')
         systemLock = false
         document.getElementById("toggleLock").innerHTML = "Lock"
         document.getElementById("toggleLock").classList.remove('red')
     }else{
+        console.log('locking')
         systemLock = true
         document.getElementById("toggleLock").innerHTML = "Locked"
         document.getElementById("toggleLock").classList.add('red')
     }
 }
-function a(){
-    let link = document.getElementById("buttonSave")
-    let input = document.getElementById("testName").value
-    link.href = "/" + input + ".csv"
-}
+
+//  Controll Logic
 document.getElementById("buttonUP").onclick = goUp
 document.getElementById("buttonDown").onclick = goDown
 document.getElementById("buttonZero").onclick = setZero
@@ -159,5 +163,5 @@ document.getElementById("buttonGoTo").onclick = goTo
 document.getElementById("buttonRun").onclick = run
 document.getElementById("buttonUpdateGraph").onclick = updateGraph
 document.getElementById("toggleLock").onclick = toggleLock
-document.getElementById("testName").onchange = a
+
 getMachineStatus();

@@ -14,10 +14,8 @@ def initScreen():
     tft.fill(st7789.color565(52, 56, 65))
     tft.png(f'wifi-icon.png', 10, 10)
     tft.text(font, '---', 55, 8, fontColor, bgColor)
-    tft.text(font, '---', 40, 75, fontColor, textBG)
-    tft.text(font, '---', 180, 75, fontColor, textBG)
-    tft.text(font, 'V2.0', 250, 205, fontColor, bgColor)
-
+    tft.text(font, '---', 40, 162, fontColor, textBG)
+    tft.text(font, '---', 180, 162, fontColor, textBG)
     #tft.text(font, "Initializing", 10, 75, fontColor, bgColor)
 
 
@@ -33,8 +31,8 @@ def updatePos(x, l):
     l = '{}       '.format(l)
     x = x[:6]
     l = l[:6]
-    tft.text(font, x, 40, 75, fontColor, textBG)
-    tft.text(font, l, 180, 75, fontColor, textBG)
+    tft.text(font, x, 40, 162, fontColor, textBG)
+    tft.text(font, l, 180, 162, fontColor, textBG)
     
 #initScreen()
 #updatePos(1.231246,4)

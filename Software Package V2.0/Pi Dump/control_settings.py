@@ -8,7 +8,6 @@ settingList = {
     "b": -1.45362E-12,
     "c": -4.96120E-05,
     "d": 4.57435E-02,
-    "workOffset":0,
     "calibration_values":[
         [922, 0],
         [-99304, 4.96],
@@ -25,6 +24,7 @@ def preProcessSettings( settings ):
         else:
             settingList[setting] = settings[setting]
     return json.dumps(settingList)
+
 
 def writeSettings( settings ):
     settingList = preProcessSettings(settings)
@@ -48,20 +48,5 @@ def updateCalibration( a, b, c, d, calValues ):
     currentSettings['d'] = d
     currentSettings['calibration_values'] = calValues
 
-    writeSettings(currentSettings)
-    return
-
-def updateWorkOffset( workOffset ):
-    #write the new Data to the settings file
-    currentSettings = importSettings()
-    currentSettings['workOffset'] = workOffset
-    writeSettings(currentSettings)
-    return
-
-def updateSettingsPage( SSID, Password, SampleRate):
-    currentSettings = importSettings()
-    currentSettings['SSID'] = SSID
-    currentSettings['PASSWORD'] = Password
-    currentSettings['sampleRate'] = SampleRate
     writeSettings(currentSettings)
     return

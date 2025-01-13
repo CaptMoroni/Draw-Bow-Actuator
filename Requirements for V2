@@ -13,21 +13,21 @@ Needs an API Exposed:
 Phone is the primary device being used to interact with the machine 
 
 Function:
- - Machine Calibration
- - Use the load calibration function
+ X Machine Calibration
+ X Use the load calibration function
    - data out of the machine is calibrated/curve fitted 
    - input coefficients for the curve fit 
     - 3rd order polynomial
- - Calibration routine should be something like this:
+ X Calibration routine should be something like this:
     - Measure the weight, save the raw data
     - solve the polynomial and save the coefficients
- - Save the raw data with the name/serial number
+X Save the raw data with the name/serial number
  - Save multiple runs 
  - Draw offset: 
     - brace height where the string touches the machine
     - for a 10 inch draw currently the data will say 0 to 10 should say 5 to 15 if the brace height is 5 inches
- * Set the brace height in the calibration page
- * Display when the machine is a the zero point
+X Set the brace height in the calibration page
+X Display when the machine is a the zero point
  - Change the default jog distance to .5 inches
  - Calibration feature to set the top speed of the machine 
     - input the inches per min

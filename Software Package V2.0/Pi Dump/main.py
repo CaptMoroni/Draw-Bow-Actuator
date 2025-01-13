@@ -183,29 +183,13 @@ if wlan.isconnected():
             if jsonText != 'undefined':
                 inputData = json.loads(jsonText)
                 print(inputData)
-                cs.updateSettingsPage(inputData['SSID'], inputData['PASSWORD'], inputData['SampleRate'])
+                cs.writeSettings(inputData)
             else:
                 inputData = {}
             settings = cs.importSettings()
             response = json.dumps(settings)
             responseHeaders = jsonHeader
 
-        elif URL == '/saveWorkOffset':
-            jsonText = URL_Data['data'].replace('%22', '"')
-            print(jsonText)
-            if jsonText != 'undefined':
-                inputData = json.loads(jsonText)
-                print(inputData)
-                if 'newWorkOffset' in inputData.keys():
-                    newWorkOffset = inputData['newWorkOffset']
-                    act.setWorkOffset(newWorkOffset)
-                    cs.updateWorkOffset(newWorkOffset)
-            else:
-                inputData = {}
-            settings = cs.importSettings()
-            response = json.dumps(settings)
-            responseHeaders = jsonHeader
-            
         elif URL == '/saveCalibration':
             jsonText = URL_Data['data'].replace('%22', '"')
             print(jsonText)
@@ -214,7 +198,6 @@ if wlan.isconnected():
                 print(inputData)
                 a, b, c, d = act.solveCalibration(inputData) #commands the actuator to solve the calibration and update the line fit with the values
                 cs.updateCalibration(a, b, c, d, inputData) #updates the settings file with the new data
-                print(a, b, c, d)
             else:
                 inputData = {}
             settings = cs.importSettings()
@@ -236,24 +219,9 @@ if wlan.isconnected():
             responseHeaders = jsonHeader
 
         else:
-            csvData = open("testData.csv", "r")
-            data = csvData.read()
-            csvData.close()
-            lineData = data.split('\n')
-            csvName = '/' + lineData[0].strip() + ".csv"
-            print('===========')
-            print(len(lineData))
-            print('===========')
-            print(URL)
-            print(csvName)
-            print('===========')
-            if URL == csvName:
-                response = data
-                responseHeaders = csvHeader
-            else:
-                print('error 404')
-                response = '404 Error'
-                print('response error:')
+            print('error 404')
+            response = '404 Error'
+            print('response error:')
         
         cl.send(responseHeaders)
         cl.send(response)

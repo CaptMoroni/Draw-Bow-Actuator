@@ -26,8 +26,6 @@ class actuator:
             'FWD': 0,
             })
         
-        self.S1.setWorkOffset(settings['workOffset'])
-
         self.cl = cl.loadCellTools()
         self.lock_pin = Pin(17, Pin.OUT)
         self.lock_enable = True
@@ -75,9 +73,10 @@ class actuator:
                     utime.sleep_ms(500)
         if cData['c'] == 'run':
             if cData['x'] != 'undefined':
-                self.drawAndLog(cData['x'], settings['sampleRate'], cData['n'])
+                self.drawAndLog(cData['x'], settings['sampleRate'])
 
-    def drawAndLog( self, goToY , sampleRate, runName):
+    def drawAndLog( self, goToY , sampleRate):
+        settings = cs.importSettings()
         print('logging')
         self.measurements = []
         initPos = self.S1.getCurrentPos()
@@ -113,7 +112,6 @@ class actuator:
             utime.sleep_ms(100)
         
         savedFile = open('testData.csv', 'w')
-        savedFile.write(runName + '\n\n')
         savedFile.write('position (in), load (lbf)\n')
         for line in self.measurements:
             lineData = ''
@@ -129,6 +127,3 @@ class actuator:
         a, b, c, d = self.cl.solveCurveFit(calData)
         self.cl.setLineFitValues(d, c, b, a)
         return a, b, c, d
-    
-    def setWorkOffset(self, newOffset):
-        self.S1.setWorkOffset(newOffset)

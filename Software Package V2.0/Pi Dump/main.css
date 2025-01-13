@@ -1,6 +1,6 @@
 body{
     background-color: rgb(52, 56, 65);
-    margin: 0px 3em;
+    margin: 3em;
     font-family: 'consolas';
     color: whitesmoke;
     font-size: large;
@@ -23,7 +23,6 @@ body{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    padding-bottom: 1em;
 }
 .positionBar{
     width:25px;

@@ -27,8 +27,6 @@ class stepper:
         
         self.stepTimer = Timer()
         self.accelTimer = Timer()
-
-        self.workOffset = 5
     
     def step(self, t):
         if self.halfSteps != self.stepTarget:
@@ -60,12 +58,13 @@ class stepper:
                 self.spin(self.currentFrequency)
                 
     def setZeroPos(self):
-        self.halfSteps = int(2 * (self.workOffset) * self.steps_per_in)
-        self.stepTarget = int(2 * (self.workOffset) * self.steps_per_in)
+        self.halfSteps = 0
+        self.stepTarget = 0
             
     def getCurrentPos(self):
         return (self.halfSteps / 2) / self.steps_per_in
         
+
     def setDirection(self):
         if self.stepTarget - self.halfSteps > 0:
             self.dir_pin.value(self.FWD)
@@ -77,13 +76,12 @@ class stepper:
     def goTo(self, target): #target in inches
         self.ready = False
         print('going to {}'.format(target))
-        self.stepTarget = int(2 * (target) * self.steps_per_in)
+        self.stepTarget = int(2 * target * 462.0050)
         self.setDirection()
         print(self.stepTarget)        
         self.accelTimer.init(freq=50, mode=Timer.PERIODIC, callback=self.changeSpeed)
 
-    def setWorkOffset(self, newOffset):
-        self.workOffset = newOffset
+
 
 
 

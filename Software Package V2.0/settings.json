@@ -1,1 +1,16 @@
-{"load_cell_value_1": -29456.0, "SSID": "WIFI Network", "PASSWORD": "Password", "load_cell_weight_1": 0, "load_cell_value_2": -295082.0, "load_cell_weight_2": 13, "sampleRate": 50}
+{
+    "SSID": "WIFI NAME",
+    "PASSWORD": "PASSWORD",
+    "sampleRate": 50,
+    "a": -1.96034E-18,
+    "b": -1.45362E-12,
+    "c": -4.96120E-05,
+    "d": 4.57435E-02,
+    "workOffset":9,
+    "calibration_values": [
+        [922,       0],
+        [-99304,    4.96],
+        [-196637,   9.76],
+        [-493281,   24.4]
+    ]
+}
