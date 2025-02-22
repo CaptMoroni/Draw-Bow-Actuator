@@ -27,6 +27,7 @@ javascriptHeader = 'HTTP/1.0 200 OK\r\nContent-type: text/javascript\r\n\r\n'
 jsonHeader = 'HTTP/1.0 200 OK\r\nContent-type: text/json\r\n\r\n'
 csvHeader = 'HTTP/1.0 200 OK\r\nContent-type: application/csv\r\n\r\n'
 cssHeader = 'HTTP/1.0 200 OK\r\nContent-type: text/css\r\n\r\n'
+pngHeader = 'HTTP/1.0 200 OK\r\nContent-type: image/png\r\n\r\n'
 
 sampleRate = 10
 
@@ -183,7 +184,7 @@ if wlan.isconnected():
             if jsonText != 'undefined':
                 inputData = json.loads(jsonText)
                 print(inputData)
-                cs.updateSettingsPage(inputData['SSID'], inputData['PASSWORD'], inputData['SampleRate'])
+                cs.updateSettingsPage(inputData['SSID'], inputData['PASSWORD'], inputData['sampleRate'])
             else:
                 inputData = {}
             settings = cs.importSettings()
@@ -234,6 +235,12 @@ if wlan.isconnected():
             testData = {'x':position, 'l':load}
             response = json.dumps(testData)
             responseHeaders = jsonHeader
+
+        elif URL == '/favicon.ico':
+            page = open("favicon.png", "rb")
+            response = page.read()
+            page.close()
+            responseHeaders = pngHeader
 
         else:
             csvData = open("testData.csv", "r")
